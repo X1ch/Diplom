@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category_Oborudovania">
+    <Key>
+      <PropertyRef Name="ID_Category" />
+    </Key>
+    <Property Name="ID_Category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Oborudovanie_Category_Oborudovania" FromRole="Category_Oborudovania" ToRole="Oborudovanie" />
+  </EntityType>
+  <EntityType Name="Oborudovanie">
+    <Key>
+      <PropertyRef Name="ID_PC" />
+    </Key>
+    <Property Name="ID_PC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Seriyn_Num" Type="Int32" Nullable="false" />
+    <Property Name="ID_Category" Type="Int32" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date_Buy" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Garantia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_Status" Type="Int32" Nullable="false" />
+    <Property Name="Prichina_Spisania" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Date_Spisania" Type="DateTime" Precision="0" />
+    <Property Name="Sotrudnik_Spisal" Type="Int32" />
+    <NavigationProperty Name="Category_Oborudovania" Relationship="Self.FK_Oborudovanie_Category_Oborudovania" FromRole="Oborudovanie" ToRole="Category_Oborudovania" />
+    <NavigationProperty Name="Status_Oborudovania" Relationship="Self.FK_Oborudovanie_Status_Oborudovania" FromRole="Oborudovanie" ToRole="Status_Oborudovania" />
+    <NavigationProperty Name="Remonti" Relationship="Self.FK_Remonti_Oborudovanie" FromRole="Oborudovanie" ToRole="Remonti" />
+    <NavigationProperty Name="Sklad" Relationship="Self.FK_Sklad_Oborudovanie" FromRole="Oborudovanie" ToRole="Sklad" />
+    <NavigationProperty Name="Spisanie" Relationship="Self.FK_Spisanie_Oborudovanie" FromRole="Oborudovanie" ToRole="Spisanie" />
+    <NavigationProperty Name="Vidachi" Relationship="Self.FK_Vidachi_Oborudovanie" FromRole="Oborudovanie" ToRole="Vidachi" />
+  </EntityType>
+  <EntityType Name="Remonti">
+    <Key>
+      <PropertyRef Name="ID_Remont" />
+    </Key>
+    <Property Name="ID_Remont" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_PC" Type="Int32" Nullable="false" />
+    <Property Name="Company_Remont" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Prichina_Remonta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date_Remonta" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status_Remonta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Sotrudnika" Type="Int32" Nullable="false" />
+    <Property Name="Date_Sozdania" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Remonti_Oborudovanie" FromRole="Remonti" ToRole="Oborudovanie" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID_Role" />
+    </Key>
+    <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Sklad">
+    <Key>
+      <PropertyRef Name="ID_Sklad" />
+    </Key>
+    <Property Name="ID_Sklad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_PC" Type="Int32" Nullable="false" />
+    <Property Name="Date_Postuplenia" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_Vydachi" Type="DateTime" Precision="0" />
+    <Property Name="Prichina" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sotrudnik_Postavivshi" Type="Int32" Nullable="false" />
+    <Property Name="Sotrudnik_Vydavshi" Type="Int32" />
+    <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Sklad_Oborudovanie" FromRole="Sklad" ToRole="Oborudovanie" />
+  </EntityType>
+  <EntityType Name="Spisanie">
+    <Key>
+      <PropertyRef Name="ID_Spisanie" />
+    </Key>
+    <Property Name="ID_Spisanie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_PC" Type="Int32" Nullable="false" />
+    <Property Name="Date_Spisania" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Prichina_Spisania" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sotrudnik_Spisavshi" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Spisanie_Oborudovanie" FromRole="Spisanie" ToRole="Oborudovanie" />
+  </EntityType>
+  <EntityType Name="Status_Oborudovania">
+    <Key>
+      <PropertyRef Name="ID_Status" />
+    </Key>
+    <Property Name="ID_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Oborudovanie_Status_Oborudovania" FromRole="Status_Oborudovania" ToRole="Oborudovanie" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID_Sotrudnika" />
+    </Key>
+    <Property Name="ID_Sotrudnika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Dolzhnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Num_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_Role" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Vidachi" Relationship="Self.FK_Vidachi_Users" FromRole="Users" ToRole="Vidachi" />
+  </EntityType>
+  <EntityType Name="Vidachi">
+    <Key>
+      <PropertyRef Name="ID_Vidachi" />
+    </Key>
+    <Property Name="ID_Vidachi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Sotrudnika" Type="Int32" Nullable="false" />
+    <Property Name="ID_PC" Type="Int32" Nullable="false" />
+    <Property Name="Date_Vidachi" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status_Vidachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date_Vozvrata" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Vidachi_Oborudovanie" FromRole="Vidachi" ToRole="Oborudovanie" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Vidachi_Users" FromRole="Vidachi" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Oborudovanie_Category_Oborudovania">
+    <End Role="Category_Oborudovania" Type="Self.Category_Oborudovania" Multiplicity="1" />
+    <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category_Oborudovania">
+        <PropertyRef Name="ID_Category" />
+      </Principal>
+      <Dependent Role="Oborudovanie">
+        <PropertyRef Name="ID_Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oborudovanie_Status_Oborudovania">
+    <End Role="Status_Oborudovania" Type="Self.Status_Oborudovania" Multiplicity="1" />
+    <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status_Oborudovania">
+        <PropertyRef Name="ID_Status" />
+      </Principal>
+      <Dependent Role="Oborudovanie">
+        <PropertyRef Name="ID_Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Remonti_Oborudovanie">
+    <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+    <End Role="Remonti" Type="Self.Remonti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oborudovanie">
+        <PropertyRef Name="ID_PC" />
+      </Principal>
+      <Dependent Role="Remonti">
+        <PropertyRef Name="ID_PC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sklad_Oborudovanie">
+    <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+    <End Role="Sklad" Type="Self.Sklad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oborudovanie">
+        <PropertyRef Name="ID_PC" />
+      </Principal>
+      <Dependent Role="Sklad">
+        <PropertyRef Name="ID_PC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Spisanie_Oborudovanie">
+    <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+    <End Role="Spisanie" Type="Self.Spisanie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oborudovanie">
+        <PropertyRef Name="ID_PC" />
+      </Principal>
+      <Dependent Role="Spisanie">
+        <PropertyRef Name="ID_PC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vidachi_Oborudovanie">
+    <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+    <End Role="Vidachi" Type="Self.Vidachi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oborudovanie">
+        <PropertyRef Name="ID_PC" />
+      </Principal>
+      <Dependent Role="Vidachi">
+        <PropertyRef Name="ID_PC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID_Role" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="ID_Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vidachi_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Vidachi" Type="Self.Vidachi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_Sotrudnika" />
+      </Principal>
+      <Dependent Role="Vidachi">
+        <PropertyRef Name="ID_Sotrudnika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category_Oborudovania" EntityType="Self.Category_Oborudovania" />
+    <EntitySet Name="Oborudovanie" EntityType="Self.Oborudovanie" />
+    <EntitySet Name="Remonti" EntityType="Self.Remonti" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Sklad" EntityType="Self.Sklad" />
+    <EntitySet Name="Spisanie" EntityType="Self.Spisanie" />
+    <EntitySet Name="Status_Oborudovania" EntityType="Self.Status_Oborudovania" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Vidachi" EntityType="Self.Vidachi" />
+    <AssociationSet Name="FK_Oborudovanie_Category_Oborudovania" Association="Self.FK_Oborudovanie_Category_Oborudovania">
+      <End Role="Category_Oborudovania" EntitySet="Category_Oborudovania" />
+      <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oborudovanie_Status_Oborudovania" Association="Self.FK_Oborudovanie_Status_Oborudovania">
+      <End Role="Status_Oborudovania" EntitySet="Status_Oborudovania" />
+      <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Remonti_Oborudovanie" Association="Self.FK_Remonti_Oborudovanie">
+      <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+      <End Role="Remonti" EntitySet="Remonti" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sklad_Oborudovanie" Association="Self.FK_Sklad_Oborudovanie">
+      <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+      <End Role="Sklad" EntitySet="Sklad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Spisanie_Oborudovanie" Association="Self.FK_Spisanie_Oborudovanie">
+      <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+      <End Role="Spisanie" EntitySet="Spisanie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vidachi_Oborudovanie" Association="Self.FK_Vidachi_Oborudovanie">
+      <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+      <End Role="Vidachi" EntitySet="Vidachi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vidachi_Users" Association="Self.FK_Vidachi_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Vidachi" EntitySet="Vidachi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Database1ModelContainer" CdmEntityContainer="Database1Entities">
+    <EntitySetMapping Name="Category_Oborudovania">
+      <EntityTypeMapping TypeName="Database1Model.Category_Oborudovania">
+        <MappingFragment StoreEntitySet="Category_Oborudovania">
+          <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+          <ScalarProperty Name="NameCategory" ColumnName="NameCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Oborudovanie">
+      <EntityTypeMapping TypeName="Database1Model.Oborudovanie">
+        <MappingFragment StoreEntitySet="Oborudovanie">
+          <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+          <ScalarProperty Name="Seriyn_Num" ColumnName="Seriyn_Num" />
+          <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Date_Buy" ColumnName="Date_Buy" />
+          <ScalarProperty Name="Garantia" ColumnName="Garantia" />
+          <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+          <ScalarProperty Name="Prichina_Spisania" ColumnName="Prichina_Spisania" />
+          <ScalarProperty Name="Date_Spisania" ColumnName="Date_Spisania" />
+          <ScalarProperty Name="Sotrudnik_Spisal" ColumnName="Sotrudnik_Spisal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Remonti">
+      <EntityTypeMapping TypeName="Database1Model.Remonti">
+        <MappingFragment StoreEntitySet="Remonti">
+          <ScalarProperty Name="ID_Remont" ColumnName="ID_Remont" />
+          <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+          <ScalarProperty Name="Company_Remont" ColumnName="Company_Remont" />
+          <ScalarProperty Name="Prichina_Remonta" ColumnName="Prichina_Remonta" />
+          <ScalarProperty Name="Date_Remonta" ColumnName="Date_Remonta" />
+          <ScalarProperty Name="Status_Remonta" ColumnName="Status_Remonta" />
+          <ScalarProperty Name="ID_Sotrudnika" ColumnName="ID_Sotrudnika" />
+          <ScalarProperty Name="Date_Sozdania" ColumnName="Date_Sozdania" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="Database1Model.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+          <ScalarProperty Name="Name_Role" ColumnName="Name_Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sklad">
+      <EntityTypeMapping TypeName="Database1Model.Sklad">
+        <MappingFragment StoreEntitySet="Sklad">
+          <ScalarProperty Name="ID_Sklad" ColumnName="ID_Sklad" />
+          <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+          <ScalarProperty Name="Date_Postuplenia" ColumnName="Date_Postuplenia" />
+          <ScalarProperty Name="Date_Vydachi" ColumnName="Date_Vydachi" />
+          <ScalarProperty Name="Prichina" ColumnName="Prichina" />
+          <ScalarProperty Name="Sotrudnik_Postavivshi" ColumnName="Sotrudnik_Postavivshi" />
+          <ScalarProperty Name="Sotrudnik_Vydavshi" ColumnName="Sotrudnik_Vydavshi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Spisanie">
+      <EntityTypeMapping TypeName="Database1Model.Spisanie">
+        <MappingFragment StoreEntitySet="Spisanie">
+          <ScalarProperty Name="ID_Spisanie" ColumnName="ID_Spisanie" />
+          <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+          <ScalarProperty Name="Date_Spisania" ColumnName="Date_Spisania" />
+          <ScalarProperty Name="Prichina_Spisania" ColumnName="Prichina_Spisania" />
+          <ScalarProperty Name="Sotrudnik_Spisavshi" ColumnName="Sotrudnik_Spisavshi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status_Oborudovania">
+      <EntityTypeMapping TypeName="Database1Model.Status_Oborudovania">
+        <MappingFragment StoreEntitySet="Status_Oborudovania">
+          <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+          <ScalarProperty Name="Name_Status" ColumnName="Name_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Database1Model.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID_Sotrudnika" ColumnName="ID_Sotrudnika" />
+          <ScalarProperty Name="Fio" ColumnName="Fio" />
+          <ScalarProperty Name="Dolzhnost" ColumnName="Dolzhnost" />
+          <ScalarProperty Name="Num_Phone" ColumnName="Num_Phone" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vidachi">
+      <EntityTypeMapping TypeName="Database1Model.Vidachi">
+        <MappingFragment StoreEntitySet="Vidachi">
+          <ScalarProperty Name="ID_Vidachi" ColumnName="ID_Vidachi" />
+          <ScalarProperty Name="ID_Sotrudnika" ColumnName="ID_Sotrudnika" />
+          <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+          <ScalarProperty Name="Date_Vidachi" ColumnName="Date_Vidachi" />
+          <ScalarProperty Name="Status_Vidachi" ColumnName="Status_Vidachi" />
+          <ScalarProperty Name="Date_Vozvrata" ColumnName="Date_Vozvrata" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

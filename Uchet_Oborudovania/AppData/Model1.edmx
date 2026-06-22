@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Database1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category_Oborudovania">
+          <Key>
+            <PropertyRef Name="ID_Category" />
+          </Key>
+          <Property Name="ID_Category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Oborudovanie">
+          <Key>
+            <PropertyRef Name="ID_PC" />
+          </Key>
+          <Property Name="ID_PC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seriyn_Num" Type="int" Nullable="false" />
+          <Property Name="ID_Category" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_Buy" Type="date" Nullable="false" />
+          <Property Name="Garantia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Status" Type="int" Nullable="false" />
+          <Property Name="Prichina_Spisania" Type="nvarchar" MaxLength="255" />
+          <Property Name="Date_Spisania" Type="date" />
+          <Property Name="Sotrudnik_Spisal" Type="int" />
+        </EntityType>
+        <EntityType Name="Remonti">
+          <Key>
+            <PropertyRef Name="ID_Remont" />
+          </Key>
+          <Property Name="ID_Remont" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PC" Type="int" Nullable="false" />
+          <Property Name="Company_Remont" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prichina_Remonta" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_Remonta" Type="date" Nullable="false" />
+          <Property Name="Status_Remonta" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Sotrudnika" Type="int" Nullable="false" />
+          <Property Name="Date_Sozdania" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sklad">
+          <Key>
+            <PropertyRef Name="ID_Sklad" />
+          </Key>
+          <Property Name="ID_Sklad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PC" Type="int" Nullable="false" />
+          <Property Name="Date_Postuplenia" Type="date" Nullable="false" />
+          <Property Name="Date_Vydachi" Type="date" />
+          <Property Name="Prichina" Type="nvarchar(max)" />
+          <Property Name="Sotrudnik_Postavivshi" Type="int" Nullable="false" />
+          <Property Name="Sotrudnik_Vydavshi" Type="int" />
+        </EntityType>
+        <EntityType Name="Spisanie">
+          <Key>
+            <PropertyRef Name="ID_Spisanie" />
+          </Key>
+          <Property Name="ID_Spisanie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PC" Type="int" Nullable="false" />
+          <Property Name="Date_Spisania" Type="date" Nullable="false" />
+          <Property Name="Prichina_Spisania" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sotrudnik_Spisavshi" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status_Oborudovania">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_Sotrudnika" />
+          </Key>
+          <Property Name="ID_Sotrudnika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fio" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dolzhnost" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Num_Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ID_Role" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vidachi">
+          <Key>
+            <PropertyRef Name="ID_Vidachi" />
+          </Key>
+          <Property Name="ID_Vidachi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Sotrudnika" Type="int" Nullable="false" />
+          <Property Name="ID_PC" Type="int" Nullable="false" />
+          <Property Name="Date_Vidachi" Type="date" Nullable="false" />
+          <Property Name="Status_Vidachi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_Vozvrata" Type="date" />
+        </EntityType>
+        <Association Name="FK_Oborudovanie_Category_Oborudovania">
+          <End Role="Category_Oborudovania" Type="Self.Category_Oborudovania" Multiplicity="1" />
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_Oborudovania">
+              <PropertyRef Name="ID_Category" />
+            </Principal>
+            <Dependent Role="Oborudovanie">
+              <PropertyRef Name="ID_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oborudovanie_Status_Oborudovania">
+          <End Role="Status_Oborudovania" Type="Self.Status_Oborudovania" Multiplicity="1" />
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_Oborudovania">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="Oborudovanie">
+              <PropertyRef Name="ID_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonti_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Remonti" Type="Self.Remonti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="ID_PC" />
+            </Principal>
+            <Dependent Role="Remonti">
+              <PropertyRef Name="ID_PC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sklad_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Sklad" Type="Self.Sklad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="ID_PC" />
+            </Principal>
+            <Dependent Role="Sklad">
+              <PropertyRef Name="ID_PC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spisanie_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Spisanie" Type="Self.Spisanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="ID_PC" />
+            </Principal>
+            <Dependent Role="Spisanie">
+              <PropertyRef Name="ID_PC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vidachi_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Vidachi" Type="Self.Vidachi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="ID_PC" />
+            </Principal>
+            <Dependent Role="Vidachi">
+              <PropertyRef Name="ID_PC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vidachi_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Vidachi" Type="Self.Vidachi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Principal>
+            <Dependent Role="Vidachi">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Database1ModelContainer">
+          <EntitySet Name="Category_Oborudovania" EntityType="Self.Category_Oborudovania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oborudovanie" EntityType="Self.Oborudovanie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remonti" EntityType="Self.Remonti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sklad" EntityType="Self.Sklad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spisanie" EntityType="Self.Spisanie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status_Oborudovania" EntityType="Self.Status_Oborudovania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vidachi" EntityType="Self.Vidachi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Oborudovanie_Category_Oborudovania" Association="Self.FK_Oborudovanie_Category_Oborudovania">
+            <End Role="Category_Oborudovania" EntitySet="Category_Oborudovania" />
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oborudovanie_Status_Oborudovania" Association="Self.FK_Oborudovanie_Status_Oborudovania">
+            <End Role="Status_Oborudovania" EntitySet="Status_Oborudovania" />
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonti_Oborudovanie" Association="Self.FK_Remonti_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Remonti" EntitySet="Remonti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sklad_Oborudovanie" Association="Self.FK_Sklad_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Sklad" EntitySet="Sklad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spisanie_Oborudovanie" Association="Self.FK_Spisanie_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Spisanie" EntitySet="Spisanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vidachi_Oborudovanie" Association="Self.FK_Vidachi_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Vidachi" EntitySet="Vidachi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vidachi_Users" Association="Self.FK_Vidachi_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Vidachi" EntitySet="Vidachi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category_Oborudovania">
+          <Key>
+            <PropertyRef Name="ID_Category" />
+          </Key>
+          <Property Name="ID_Category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Oborudovanie_Category_Oborudovania" FromRole="Category_Oborudovania" ToRole="Oborudovanie" />
+        </EntityType>
+        <EntityType Name="Oborudovanie">
+          <Key>
+            <PropertyRef Name="ID_PC" />
+          </Key>
+          <Property Name="ID_PC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seriyn_Num" Type="Int32" Nullable="false" />
+          <Property Name="ID_Category" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_Buy" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Garantia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Status" Type="Int32" Nullable="false" />
+          <Property Name="Prichina_Spisania" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Spisania" Type="DateTime" Precision="0" />
+          <Property Name="Sotrudnik_Spisal" Type="Int32" />
+          <NavigationProperty Name="Category_Oborudovania" Relationship="Self.FK_Oborudovanie_Category_Oborudovania" FromRole="Oborudovanie" ToRole="Category_Oborudovania" />
+          <NavigationProperty Name="Status_Oborudovania" Relationship="Self.FK_Oborudovanie_Status_Oborudovania" FromRole="Oborudovanie" ToRole="Status_Oborudovania" />
+          <NavigationProperty Name="Remonti" Relationship="Self.FK_Remonti_Oborudovanie" FromRole="Oborudovanie" ToRole="Remonti" />
+          <NavigationProperty Name="Sklad" Relationship="Self.FK_Sklad_Oborudovanie" FromRole="Oborudovanie" ToRole="Sklad" />
+          <NavigationProperty Name="Spisanie" Relationship="Self.FK_Spisanie_Oborudovanie" FromRole="Oborudovanie" ToRole="Spisanie" />
+          <NavigationProperty Name="Vidachi" Relationship="Self.FK_Vidachi_Oborudovanie" FromRole="Oborudovanie" ToRole="Vidachi" />
+        </EntityType>
+        <EntityType Name="Remonti">
+          <Key>
+            <PropertyRef Name="ID_Remont" />
+          </Key>
+          <Property Name="ID_Remont" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PC" Type="Int32" Nullable="false" />
+          <Property Name="Company_Remont" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prichina_Remonta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_Remonta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status_Remonta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Sotrudnika" Type="Int32" Nullable="false" />
+          <Property Name="Date_Sozdania" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Remonti_Oborudovanie" FromRole="Remonti" ToRole="Oborudovanie" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Sklad">
+          <Key>
+            <PropertyRef Name="ID_Sklad" />
+          </Key>
+          <Property Name="ID_Sklad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PC" Type="Int32" Nullable="false" />
+          <Property Name="Date_Postuplenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date_Vydachi" Type="DateTime" Precision="0" />
+          <Property Name="Prichina" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sotrudnik_Postavivshi" Type="Int32" Nullable="false" />
+          <Property Name="Sotrudnik_Vydavshi" Type="Int32" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Sklad_Oborudovanie" FromRole="Sklad" ToRole="Oborudovanie" />
+        </EntityType>
+        <EntityType Name="Spisanie">
+          <Key>
+            <PropertyRef Name="ID_Spisanie" />
+          </Key>
+          <Property Name="ID_Spisanie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PC" Type="Int32" Nullable="false" />
+          <Property Name="Date_Spisania" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Prichina_Spisania" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sotrudnik_Spisavshi" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Spisanie_Oborudovanie" FromRole="Spisanie" ToRole="Oborudovanie" />
+        </EntityType>
+        <EntityType Name="Status_Oborudovania">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Oborudovanie_Status_Oborudovania" FromRole="Status_Oborudovania" ToRole="Oborudovanie" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_Sotrudnika" />
+          </Key>
+          <Property Name="ID_Sotrudnika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dolzhnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Num_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Vidachi" Relationship="Self.FK_Vidachi_Users" FromRole="Users" ToRole="Vidachi" />
+        </EntityType>
+        <EntityType Name="Vidachi">
+          <Key>
+            <PropertyRef Name="ID_Vidachi" />
+          </Key>
+          <Property Name="ID_Vidachi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Sotrudnika" Type="Int32" Nullable="false" />
+          <Property Name="ID_PC" Type="Int32" Nullable="false" />
+          <Property Name="Date_Vidachi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status_Vidachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Vozvrata" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Vidachi_Oborudovanie" FromRole="Vidachi" ToRole="Oborudovanie" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Vidachi_Users" FromRole="Vidachi" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Oborudovanie_Category_Oborudovania">
+          <End Role="Category_Oborudovania" Type="Self.Category_Oborudovania" Multiplicity="1" />
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_Oborudovania">
+              <PropertyRef Name="ID_Category" />
+            </Principal>
+            <Dependent Role="Oborudovanie">
+              <PropertyRef Name="ID_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oborudovanie_Status_Oborudovania">
+          <End Role="Status_Oborudovania" Type="Self.Status_Oborudovania" Multiplicity="1" />
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_Oborudovania">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="Oborudovanie">
+              <PropertyRef Name="ID_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remonti_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Remonti" Type="Self.Remonti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="ID_PC" />
+            </Principal>
+            <Dependent Role="Remonti">
+              <PropertyRef Name="ID_PC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sklad_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Sklad" Type="Self.Sklad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="ID_PC" />
+            </Principal>
+            <Dependent Role="Sklad">
+              <PropertyRef Name="ID_PC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spisanie_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Spisanie" Type="Self.Spisanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="ID_PC" />
+            </Principal>
+            <Dependent Role="Spisanie">
+              <PropertyRef Name="ID_PC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vidachi_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Vidachi" Type="Self.Vidachi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="ID_PC" />
+            </Principal>
+            <Dependent Role="Vidachi">
+              <PropertyRef Name="ID_PC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vidachi_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Vidachi" Type="Self.Vidachi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Principal>
+            <Dependent Role="Vidachi">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category_Oborudovania" EntityType="Self.Category_Oborudovania" />
+          <EntitySet Name="Oborudovanie" EntityType="Self.Oborudovanie" />
+          <EntitySet Name="Remonti" EntityType="Self.Remonti" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Sklad" EntityType="Self.Sklad" />
+          <EntitySet Name="Spisanie" EntityType="Self.Spisanie" />
+          <EntitySet Name="Status_Oborudovania" EntityType="Self.Status_Oborudovania" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Vidachi" EntityType="Self.Vidachi" />
+          <AssociationSet Name="FK_Oborudovanie_Category_Oborudovania" Association="Self.FK_Oborudovanie_Category_Oborudovania">
+            <End Role="Category_Oborudovania" EntitySet="Category_Oborudovania" />
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oborudovanie_Status_Oborudovania" Association="Self.FK_Oborudovanie_Status_Oborudovania">
+            <End Role="Status_Oborudovania" EntitySet="Status_Oborudovania" />
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remonti_Oborudovanie" Association="Self.FK_Remonti_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Remonti" EntitySet="Remonti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sklad_Oborudovanie" Association="Self.FK_Sklad_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Sklad" EntitySet="Sklad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spisanie_Oborudovanie" Association="Self.FK_Spisanie_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Spisanie" EntitySet="Spisanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vidachi_Oborudovanie" Association="Self.FK_Vidachi_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Vidachi" EntitySet="Vidachi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vidachi_Users" Association="Self.FK_Vidachi_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Vidachi" EntitySet="Vidachi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Database1ModelContainer" CdmEntityContainer="Database1Entities">
+          <EntitySetMapping Name="Category_Oborudovania">
+            <EntityTypeMapping TypeName="Database1Model.Category_Oborudovania">
+              <MappingFragment StoreEntitySet="Category_Oborudovania">
+                <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+                <ScalarProperty Name="NameCategory" ColumnName="NameCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oborudovanie">
+            <EntityTypeMapping TypeName="Database1Model.Oborudovanie">
+              <MappingFragment StoreEntitySet="Oborudovanie">
+                <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+                <ScalarProperty Name="Seriyn_Num" ColumnName="Seriyn_Num" />
+                <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Date_Buy" ColumnName="Date_Buy" />
+                <ScalarProperty Name="Garantia" ColumnName="Garantia" />
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="Prichina_Spisania" ColumnName="Prichina_Spisania" />
+                <ScalarProperty Name="Date_Spisania" ColumnName="Date_Spisania" />
+                <ScalarProperty Name="Sotrudnik_Spisal" ColumnName="Sotrudnik_Spisal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Remonti">
+            <EntityTypeMapping TypeName="Database1Model.Remonti">
+              <MappingFragment StoreEntitySet="Remonti">
+                <ScalarProperty Name="ID_Remont" ColumnName="ID_Remont" />
+                <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+                <ScalarProperty Name="Company_Remont" ColumnName="Company_Remont" />
+                <ScalarProperty Name="Prichina_Remonta" ColumnName="Prichina_Remonta" />
+                <ScalarProperty Name="Date_Remonta" ColumnName="Date_Remonta" />
+                <ScalarProperty Name="Status_Remonta" ColumnName="Status_Remonta" />
+                <ScalarProperty Name="ID_Sotrudnika" ColumnName="ID_Sotrudnika" />
+                <ScalarProperty Name="Date_Sozdania" ColumnName="Date_Sozdania" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Database1Model.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="Name_Role" ColumnName="Name_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sklad">
+            <EntityTypeMapping TypeName="Database1Model.Sklad">
+              <MappingFragment StoreEntitySet="Sklad">
+                <ScalarProperty Name="ID_Sklad" ColumnName="ID_Sklad" />
+                <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+                <ScalarProperty Name="Date_Postuplenia" ColumnName="Date_Postuplenia" />
+                <ScalarProperty Name="Date_Vydachi" ColumnName="Date_Vydachi" />
+                <ScalarProperty Name="Prichina" ColumnName="Prichina" />
+                <ScalarProperty Name="Sotrudnik_Postavivshi" ColumnName="Sotrudnik_Postavivshi" />
+                <ScalarProperty Name="Sotrudnik_Vydavshi" ColumnName="Sotrudnik_Vydavshi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spisanie">
+            <EntityTypeMapping TypeName="Database1Model.Spisanie">
+              <MappingFragment StoreEntitySet="Spisanie">
+                <ScalarProperty Name="ID_Spisanie" ColumnName="ID_Spisanie" />
+                <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+                <ScalarProperty Name="Date_Spisania" ColumnName="Date_Spisania" />
+                <ScalarProperty Name="Prichina_Spisania" ColumnName="Prichina_Spisania" />
+                <ScalarProperty Name="Sotrudnik_Spisavshi" ColumnName="Sotrudnik_Spisavshi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_Oborudovania">
+            <EntityTypeMapping TypeName="Database1Model.Status_Oborudovania">
+              <MappingFragment StoreEntitySet="Status_Oborudovania">
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="Name_Status" ColumnName="Name_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Database1Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID_Sotrudnika" ColumnName="ID_Sotrudnika" />
+                <ScalarProperty Name="Fio" ColumnName="Fio" />
+                <ScalarProperty Name="Dolzhnost" ColumnName="Dolzhnost" />
+                <ScalarProperty Name="Num_Phone" ColumnName="Num_Phone" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vidachi">
+            <EntityTypeMapping TypeName="Database1Model.Vidachi">
+              <MappingFragment StoreEntitySet="Vidachi">
+                <ScalarProperty Name="ID_Vidachi" ColumnName="ID_Vidachi" />
+                <ScalarProperty Name="ID_Sotrudnika" ColumnName="ID_Sotrudnika" />
+                <ScalarProperty Name="ID_PC" ColumnName="ID_PC" />
+                <ScalarProperty Name="Date_Vidachi" ColumnName="Date_Vidachi" />
+                <ScalarProperty Name="Status_Vidachi" ColumnName="Status_Vidachi" />
+                <ScalarProperty Name="Date_Vozvrata" ColumnName="Date_Vozvrata" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,36 @@
+﻿<Page x:Class="Uchet_Oborudovania.Pages.AddEditUsers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Uchet_Oborudovania.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEditUsers"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Border Background="White" CornerRadius="10" Padding="25" 
+                Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="TitleText" Text="Сотрудник" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20" Foreground="#2a3f54"/>
+                <TextBlock Text="ФИО" FontWeight="SemiBold" Margin="0,5"/>
+                <TextBox Text="{Binding Fio}" Margin="0,5" Height="35" Padding="10"/>
+                <TextBlock Text="Должность" FontWeight="SemiBold" Margin="0,5"/>
+                <TextBox Text="{Binding Dolzhnost}" Margin="0,5" Height="35" Padding="10"/>
+                <TextBlock Text="Номер телефона" FontWeight="SemiBold" Margin="0,5"/>
+                <TextBox Text="{Binding Num_Phone}" Margin="0,5" Height="35" Padding="10"/>
+                <TextBlock Text="Роль" FontWeight="SemiBold" Margin="0,5"/>
+                <ComboBox x:Name="cbrole" DisplayMemberPath="Name_Role" Margin="0,5" Height="35"/>
+                <TextBlock Text="Логин" x:Name="LoginTXT" FontWeight="SemiBold" Margin="0,5" Visibility="Hidden"/>
+                <TextBox Text="{Binding Login}" x:Name="LoginTB" Margin="0,5" Height="35" Padding="10" Visibility="Hidden"/>
+                <TextBlock Text="Пароль" x:Name="PasswordTXT" FontWeight="SemiBold" Margin="0,5" Visibility="Hidden"/>
+                <TextBox Text="{Binding PasswordHash}" x:Name="PasswordTB" Margin="0,5" Height="35" Padding="10" Visibility="Hidden"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Button x:Name="SaveBtn" Content="Сохранить" Click="SaveBtn_Click" Width="120" Height="35" Margin="0,0,10,0" Background="#4CAF50" Foreground="White" Cursor="Hand"/>
+                    <Button x:Name="BackBtn" Content="Отмена" Click="BackBtn_Click" Width="120" Height="35" Background="#666" Foreground="White" Cursor="Hand"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

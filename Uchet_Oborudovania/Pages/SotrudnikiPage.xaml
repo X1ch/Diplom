@@ -1,0 +1,47 @@
+﻿<Page x:Class="Uchet_Oborudovania.Pages.UsersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Uchet_Oborudovania.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UsersPage"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" >
+            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="searchTB" TextWrapping="Wrap" Margin="5" Height="30" Width="150" TextChanged="searchTB_TextChanged" />
+            <ComboBox x:Name="combobox1" Margin="5" Height="30" Width="150"/>
+            <Button x:Name="FilterBtn" Content="Фильтровать" Margin="5" Height="30" Width="150" Click="FilterBtn_Click"/>
+        </StackPanel>
+        <DataGrid x:Name="UsersDG" HorizontalContentAlignment="Stretch" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_Sotrudnika}"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Fio}"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Dolzhnost}"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Roles.Name_Role}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Num_Phone}"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding PasswordHash}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Изменить" Margin="5" Height="30" Width="150" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <Button x:Name="AddBtn" Content="Добавить" Margin="5" Height="30" Width="150" Click="AddBtn_Click"/>
+            <Button x:Name="DelBtn" Content="Удалить" Margin="5" Height="30" Width="150" Click="DelBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
