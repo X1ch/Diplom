@@ -28,8 +28,8 @@
                 <DataGridTextColumn Header="Должность" Binding="{Binding Dolzhnost}"/>
                 <DataGridTextColumn Header="Роль" Binding="{Binding Roles.Name_Role}"/>
                 <DataGridTextColumn Header="Номер телефона" Binding="{Binding Num_Phone}"/>
-                <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Visibility="Hidden" />
-                <DataGridTextColumn Header="Пароль" Binding="{Binding PasswordHash}" Visibility="Hidden" />
+                <DataGridTextColumn x:Name="LoginCB" Header="Логин" Binding="{Binding Login}" Visibility="Hidden" />
+                <DataGridTextColumn x:Name="PasswordCB" Header="Пароль" Binding="{Binding PasswordHash}" Visibility="Hidden" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
