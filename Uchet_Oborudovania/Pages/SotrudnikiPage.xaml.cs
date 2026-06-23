@@ -24,8 +24,22 @@ namespace Uchet_Oborudovania.Pages
         public UsersPage()
         {
             InitializeComponent();
+            CheckUser();
             UsersDG.ItemsSource = Connect.context.Users.ToList();
             combobox1.ItemsSource = Connect.context.Users.Select(x => x.Dolzhnost).ToList().Distinct().ToList();
+        }
+
+        public void CheckUser()
+        {
+            string role = UserSession.CurrentUserRoleName;
+            switch (role)
+            {
+                case "Администратор":
+                    AddBtn.Visibility = Visibility.Visible;
+                    LoginCB.Visibility = Visibility.Visible;
+                    PasswordCB.Visibility = Visibility.Visible;
+                    break;
+            }
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
