@@ -21,7 +21,7 @@
                 <TextBlock Text="Номер телефона" FontWeight="SemiBold" Margin="0,5"/>
                 <TextBox Text="{Binding Num_Phone}" Margin="0,5" Height="35" Padding="10"/>
                 <TextBlock Text="Роль" FontWeight="SemiBold" Margin="0,5"/>
-                <ComboBox x:Name="cbrole" DisplayMemberPath="Name_Role" Margin="0,5" Height="35"/>
+                <ComboBox x:Name="cbrole" Binding={Roles.Name_Role} DisplayMemberPath="Name_Role" Margin="0,5" Height="35"/>
                 <TextBlock Text="Логин" x:Name="LoginTXT" FontWeight="SemiBold" Margin="0,5" Visibility="Hidden"/>
                 <TextBox Text="{Binding Login}" x:Name="LoginTB" Margin="0,5" Height="35" Padding="10" Visibility="Hidden"/>
                 <TextBlock Text="Пароль" x:Name="PasswordTXT" FontWeight="SemiBold" Margin="0,5" Visibility="Hidden"/>
