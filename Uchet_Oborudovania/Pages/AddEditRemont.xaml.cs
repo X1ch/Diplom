@@ -30,9 +30,9 @@ namespace Uchet_Oborudovania.Pages
 
             DataContext = remonti = c;
 
-            // Загружаем оборудование (не списанное)
+            // Загружаем оборудование
             var availableEquipment = Connect.context.Oborudovanie
-                .Where(x => x.ID_Status != 4)
+                .Where(x => x.ID_Status != 4 & x.Status_Oborudovania.Name_Status != "Списано")
                 .ToList();
 
             combobox2.ItemsSource = availableEquipment;
