@@ -28,8 +28,8 @@
                 <DataGridTextColumn Header="Должность" Binding="{Binding Dolzhnost}"/>
                 <DataGridTextColumn Header="Роль" Binding="{Binding Roles.Name_Role}"/>
                 <DataGridTextColumn Header="Номер телефона" Binding="{Binding Num_Phone}"/>
-                <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
-                <DataGridTextColumn Header="Пароль" Binding="{Binding PasswordHash}"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Visibility="Hidden" />
+                <DataGridTextColumn Header="Пароль" Binding="{Binding PasswordHash}" Visibility="Hidden" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -40,8 +40,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <Button x:Name="AddBtn" Content="Добавить" Margin="5" Height="30" Width="150" Click="AddBtn_Click"/>
             <Button x:Name="DelBtn" Content="Удалить" Margin="5" Height="30" Width="150" Click="DelBtn_Click"/>
+            <Button x:Name="AddBtn" Content="Добавить" Margin="5" Height="30" Width="150" Click="AddBtn_Click" Visibility="Hidden" />
         </StackPanel>
     </Grid>
 </Page>
